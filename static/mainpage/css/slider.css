@@ -1,0 +1,112 @@
+@font-face {
+	font-family: 'BNazanin';
+	src: url('../../fonts/BNazanin.eot');
+	src: url('../../fonts/BNazanin.woff') format('woff'), url('../../fonts/BNazanin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'BTitrBold';
+	src: url('../../fonts/BTitrBold.eot');
+	src: url('../../fonts/BTitrBold.woff') format('woff'), url('../../fonts/BTitrBold.ttf') format('truetype');
+}
+
+.mySlides {
+     display: none;
+     }
+
+img {
+  vertical-align: middle;
+  }
+
+/* Slideshow container */
+.slideshow-container {
+  /*max-width: 550px;*/
+  position: relative;
+  /*position: static;*/
+  margin: 0;
+}
+
+/* Caption text */
+.text {
+  direction : rtl;
+  color: #f2f2f2;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'BNazanin', serif;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  height: 170px;
+  width: 940px;
+  text-align: right;
+}
+/* Number text (1/3 etc) */
+/*.numbertext {*/
+/*  font-family: 'BTitrBold', serif;*/
+/*  font-weight: bold;*/
+/*  font-size: 20px;*/
+/*  color: #f2f2f2;*/
+/*  padding: 8px 12px;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*}*/
+
+.msgshow{
+  font-family: 'BTitrBold', serif;
+  font-weight: bold;
+  font-size: 16px;
+  /*color: #0a58ca;*/
+  padding: 8px 12px;
+  position: absolute;
+  top: 135px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  font-family: 'BNazanin', serif;
+  font-weight: bold;
+  font-size: 25px;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: royalblue;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2.5s;
+  animation-name: fade;
+  animation-duration: 2.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+/******************************/
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+
