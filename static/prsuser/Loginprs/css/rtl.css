@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'BNazanin';
+	src: url('../fonts/BNazanin.eot');
+	src: url('../fonts/BNazanin.woff') format('woff'), url('../fonts/BNazanin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'BTitrBold';
+	src: url('../fonts/BTitrBold.eot');
+	src: url('../fonts/BTitrBold.woff') format('woff'), url('../fonts/BTitrBold.ttf') format('truetype');
+}
+
+body{
+    direction: rtl !important;
+    text-align: right !important;
+	font-family: BNazanin, sans-serif !important;
+    font-size: 14px !important;
+}
+
+.btn-show-pass {
+    right: initial;
+    left: 0;
+}
+
+.myfont_titr, .focus-input100::after {
+	font-family: BTitrBold, sans-serif !important;
+	font-size: 30px;
+}
+
+.myfont_nazanin, .focus-input100::after {
+	font-family: BNazanin, sans-serif !important;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.errors {
+    color: red;
+    background-color: #fbd4d4;
+    padding: 20px 30px;
+}
+
+/*#font_menu {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-size: 14px;*/
+/*    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;*/
+/*    color: var(--body-fg);*/
+/*    background: var(--body-bg);*/
+/*}*/
