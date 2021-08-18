@@ -1,0 +1,55 @@
+{% extends 'prsuser/baseprs.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block title %} {% block title-meta %}
+    آخرین وضعیت مالی
+{% endblock %} {% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">آخرین وضعیت مالی</h3>
+      </div>
+
+       <div class="card-body">
+            <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+                {% for prsd in lastcase %}
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >نام بانک :  {{ prsd.bank }} </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >شماره حساب :  {{ prsd.no_hesab }} </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مبلغ قسط ماهانه سرمایه :  {{ prsd.ando_installment|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >جمع سرمایه :  {{ prsd.ando_total|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مبلغ قسط ماهانه وام :  {{ prsd.vam_installment|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مانده بدهی وام :  {{ prsd.due|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مبلغ برگشت سود سهام در سال 92 :  {{ prsd.return_pay_92|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مبلغ برگشت سود سهام در سال 96 :  {{ prsd.return_pay_96|intcomma:False }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BTitrBold', sans-serif; font-size: 18px;" >مبلغ برگشت سود سهام در سال 98 :  {{ prsd.return_pay_98|intcomma:False }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+       </div>
+    </div>
+</div>
+{% endblock %}
+

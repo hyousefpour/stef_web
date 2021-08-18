@@ -1,0 +1,53 @@
+{% extends 'prsuser/baseprs.html' %}
+{% load humanize %}
+{% block title %}
+    لیست تسهیلات وام دریافت شده
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+       <div class="col-12">
+        {% if conf %}   {# در صورت وجود داده #}
+          <div class="card">
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                   <thead>
+                      <tr style="font-family: 'BNazanin',sans-serif ;font-size: 18px;">
+                         <th>ردیف</th>
+                         <th>نوع وام</th>
+                         <th>مبلغ وام</th>
+                         <th>تعدادقسط</th>
+                         <th>مبلغ قسط</th>
+                         <th>مبلغ كارمزد</th>
+                         <th>مبلغ بيمه</th>
+                         <th>مبلغ خالص وام</th>
+                         <th>تاريخ پرداخت</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        {% for confv in conf %}
+                          <tr style="font-family: 'BTitrBold', sans-serif; font-size: 16px; font-weight: bold;">
+                             <td style="width: 20px">{{ confv.radif }}</td>
+                             <td style="width: 150px">{{ confv.loan_type }}</td>
+                             <td style="width: 120px">{{ confv.loan_account|intcomma:False }}</td>
+                             <td style="width: 40px">{{ confv.numberof_instalment }}</td>
+                             <td style="width: 100px">{{ confv.instalment_account|intcomma:False }}</td>
+                             <td style="width: 70px">{{ confv.pricework_wage|intcomma:False }}</td>
+                             <td style="width: 70px">{{ confv.insurance_amount|intcomma:False }}</td>
+                             <td style="width: 120px">{{ confv.payable_account|intcomma:False }}</td>
+                             <td style="width: 70px">{{ confv.payment_date|intcomma:False }}</td>
+                          </tr>
+                        {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+             <!-- /.card-body -->
+          </div>
+          {% else %}  {# در صورتیکه هیچ داده وجو نداشته باشد #}
+            <h3> محتوای برای نمایش وجود ندارد</h3>
+          {% endif %}
+          <!-- /.card -->
+       </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'prsuser/baseprs.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %} {% block title-meta %}
+    پروفایل کاربری
+{% endblock %} {% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">پروفایل کاربری</h3>
+      </div>
+
+       <div class="card-body">
+            <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+                {% for prsd in prsdata %}
+                    <div class="row">
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >کد کاربری :  {{ prsd.username }} </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >شماره موبایل :  {{ prsd.mobil }} </p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >نام :  {{ prsd.firstname }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >نام خانوادگی :  {{ prsd.lastname }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >شماره ملی :  {{ prsd.meli_code }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p style="font-family: 'BNazanin', sans-serif; font-size: 18px;" >ایمیل :  {{ prsd.email }}</p>
+                        </div>
+                        <div class="col-12" style="font-family: BTitrBold,serif; font-size: 18px;">
+                            <label class="my-4">رمز ورود : </label>
+                            <span> برای تغییر رمز ورود <a href="{% url 'account:password_change' %}">کلیک کنید </a> </span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <button class="btn btn-success">ویرایش اطلاعات</button>
+            </form>
+       </div>
+    </div>
+</div>
+{% endblock %}

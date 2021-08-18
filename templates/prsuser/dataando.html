@@ -1,0 +1,45 @@
+{% extends 'prsuser/baseprs.html' %}
+{% load humanize %}
+{% block title %}
+    لیست پرداختی ماهانه اندوخته (سرمایه)
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+       <div class="col-12">
+        {% if ando %}   {# در صورت وجود داده #}
+          <div class="card">
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                   <thead>
+                      <tr style="font-family: 'BNazanin',sans-serif ;font-size: 18px;">
+                         <th>تاريخ پرداخت</th>
+                         <th>شرح واريزي</th>
+                         <th>مبلغ واريزي </th>
+                         <th>جمع واريزي </th>
+                         <th>نحوه واريزي</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        {% for dando in ando %}
+                          <tr style="font-family: 'BTitrBold', sans-serif; font-size: 16px; font-weight: bold;">
+                             <td style="width: 100px">{{ dando.payment_date }}</td>
+                             <td style="width: 170px">{{ dando.description }}</td>
+                             <td style="width: 120px">{{ dando.pay_amount|intcomma:False }}</td>
+                             <td style="width: 120px">{{ dando.capital_add|intcomma:False }}</td>
+                             <td style="width: 170px">{{ dando.variz_type }}</td>
+                          </tr>
+                        {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+             <!-- /.card-body -->
+          </div>
+          {% else %}  {# در صورتیکه هیچ داده وجو نداشته باشد #}
+            <h3> محتوای برای نمایش وجود ندارد</h3>
+          {% endif %}
+          <!-- /.card -->
+       </div>
+    </div>
+{% endblock %}

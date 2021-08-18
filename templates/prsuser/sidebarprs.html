@@ -1,0 +1,81 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <span class="brand-text" style="font-family: 'BTitrBold', sans-serif; font-size: 20px;"> تعاونی اعتبار فرهنگیان مازندران </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      {% for prsd in prsdata %}
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="info">
+{#              <a href="#" class="d-block" style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">کاربر: {{ user.get_full_name }}</a>#}
+              <a href="#" class="d-block" style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">کاربر: {{ prsd.firstname }}  {{ prsd.lastname }}</a>
+            </div>
+          </div>
+      {% endfor %}
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p style = "font-family: 'BTitrBold', sans-serif; font-size: 20px;">
+                صفحه اصلی
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'data_prs:lastcaseprs' %}" class="nav-link">
+                  <i class="fa fa-newspaper nav-icon"></i>
+                  <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">آخرین وضعیت مالی </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'data_prs:conf' %}" class="nav-link">
+                  <i class="fa fa-newspaper nav-icon"></i>
+                  <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">تسهیلات وام پرداخت شده </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'data_prs:ando' %}" class="nav-link">
+                  <i class="fa fa-database nav-icon"></i>
+                  <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">وضعیت پرداخت اندوخته </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'data_prs:vam' %}" class="nav-link">
+                  <i class="fa fa-medium nav-icon"></i>
+                  <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">وضعیت پرداخت اقساط وام </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'data_prs:profileprs' %}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">
+                پروفایل
+              </p>
+            </a>
+          </li>
+        </ul>
+
+        <ul>
+            <li class="nav-item">
+             <a href="{% url 'data_prs:loginprs' %}" class="nav-link">
+               <i class="fa fa-sign-out nav-icon"></i>
+               <p style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold">خروج از سایت</p>
+             </a>
+           </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
