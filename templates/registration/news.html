@@ -1,0 +1,73 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+    لیست خبرها و اطلاعیه ها
+    <a href="{% url 'account:BodyNews-create' %}" style="font-family: 'BTitrBold',sans-serif ;font-size: 18px; padding-right: 500px;"> اضافه کردن +</a>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+       <div class="col-12">
+        {% if object_list %}   {# در صورت وجود داده #}
+          <div class="card">
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                   <thead>
+                      <tr style="font-family: 'BTitrBold',sans-serif ;font-size: 18px;">
+                         <th>عنوان خبر</th>
+                          <th>محتوا</th>
+                         <th>زمان انتشار</th>
+                         <th>وضعیت</th>
+                         <th>تایید مدیر</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        {% for BodyNews in object_list %}
+                          <tr style="font-family: 'BNazanin', sans-serif; font-size: 16px; font-weight: bold;">
+{#                             <td style="width: 250px">{{ BodyNews.title }}</td>#}
+                             {% if BodyNews.status in 'n'|make_list or user.is_superuser %}
+                                 <td style="width: 220px; font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold;">
+                                     <a href="{% url 'account:BodyNews-update' BodyNews.pk %}"> {{ BodyNews.title }} </a>
+                                 </td>
+                             {% else %}
+                                 <td style="width: 220px">{{ BodyNews.title }}</td>
+                             {% endif %}
+                             <td style="width: 300px">{{ BodyNews.content|truncatechars_html:120|safe }}</td>
+                             <td>{{ BodyNews.jpublish }}</td>
+                             <td>
+                                {% if BodyNews.status == 'v'  %}
+                                    <span class="badge badge-success">نمایش</span>
+{#                                    <a target="_blank" class="badge badge-primary" href="{% url 'main_page:detail' article.slug %}">نمایش مقاله در سایت</a>#}
+                                {% elif BodyNews.status == 'n'%}
+                                    <span class="badge badge-danger">عدم نمایش</span>
+                                {% endif %}
+                             </td>
+                             <td>
+                                {% if BodyNews.managerAccept == 't'  %}
+                                    <span class="badge badge-success">تایید</span>
+{#                                    <a target="_blank" class="badge badge-primary" href="{% url 'main_page:detail' article.slug %}">نمایش مقاله در سایت</a>#}
+                                {% elif BodyNews.managerAccept == 'nt'%}
+                                    <span class="badge badge-danger">عدم تایید</span>
+                                {% endif %}
+                             </td>
+                             <td>
+                                 {% if user.is_superuser %}
+                                    <a class="badge text-danger" style="font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold;" href="{% url 'account:BodyNews-delete' BodyNews.pk %}">حذف</a>
+                                {% endif %}
+                                <a target="_blank" class="badge badge-secondary" href="{% url 'MainPage:detail' BodyNews.slug %}">پیش نمایش </a>
+                             </td>
+                          </tr>
+                        {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+             <!-- /.card-body -->
+          </div>
+          {% else %}  {# در صورتیکه هیچ داده وجو نداشته باشد #}
+            <h3> محتوای برای نمایش وجود ندارد</h3>
+          {% endif %}
+          <!-- /.card -->
+       </div>
+    </div>
+{% endblock %}

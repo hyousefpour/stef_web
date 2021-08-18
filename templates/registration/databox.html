@@ -1,0 +1,67 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+    اطلاعات صندوق
+{#    <a href="{% url 'account:DataBoxUpdate' %}" style="font-family: 'BTitrBold',sans-serif ;font-size: 18px; padding-right: 500px;"> درج یا بروز رسانی +</a>#}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+       <div class="col-12">
+        {% if object_list %}   {# در صورت وجود داده #}
+          <div class="card">
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                   <thead>
+                      <tr style="font-family: 'BTitrBold',sans-serif ;font-size: 18px;">
+                         <th>عنوان </th>
+                          <th>محتوا</th>
+                         <th>زمان انتشار</th>
+                         <th>وضعیت</th>
+                         <th>تایید مدیر</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        {% for DataBox in object_list %}
+                          <tr style="font-family: 'BNazanin', sans-serif; font-size: 16px; font-weight: bold;">
+                             {% if DataBox.status in 'n'|make_list or user.is_superuser %}
+                                 <td style="width: 250px; font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold;">
+                                    <a href="{% url 'account:DataBoxUpdate' DataBox.pk %}"> {{ DataBox.title }} </a>
+{#                                    <a href="{% url 'account:DataBoxUpdate' %}"> {{ DataBox.title }} </a>#}
+                                 </td>
+                             {% else %}
+                                 <td style="width: 250px">{{ DataBox.title }}</td>
+                             {% endif %}
+                             <td style="width: 300px">{{ DataBox.content|truncatechars_html:120|safe }}</td>
+                             <td>{{ DataBox.jpublish }}</td>
+                             <td>
+                                {% if DataBox.status == 'v'  %}
+                                    <span class="badge badge-success">نمایش</span>
+{#                                    <a target="_blank" class="badge badge-primary" href="{% url 'main_page:detail' article.slug %}">نمایش مقاله در سایت</a>#}
+                                {% elif DataBox.status == 'n'%}
+                                    <span class="badge badge-danger">عدم نمایش</span>
+                                {% endif %}
+                             </td>
+                             <td>
+                                {% if DataBox.managerAccept == 't'  %}
+                                    <span class="badge badge-success">تایید</span>
+{#                                    <a target="_blank" class="badge badge-primary" href="{% url 'main_page:detail' article.slug %}">نمایش مقاله در سایت</a>#}
+                                {% elif DataBox.managerAccept == 'nt'%}
+                                    <span class="badge badge-danger">عدم تایید</span>
+                                {% endif %}
+                             </td>
+                          </tr>
+                        {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+             <!-- /.card-body -->
+          </div>
+          {% else %}  {# در صورتیکه هیچ داده وجو نداشته باشد #}
+            <h3> محتوای برای نمایش وجود ندارد</h3>
+          {% endif %}
+          <!-- /.card -->
+       </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+    آدرس صندوق تعاونی اعتبار فرهنگیان
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+       <div class="col-12">
+        {% if object_list %}   {# در صورت وجود داده #}
+          <div class="card">
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                   <thead>
+                      <tr style="font-family: 'BTitrBold',sans-serif ;font-size: 18px;">
+                         <th>عنوان </th>
+                          <th>آدرس</th>
+                         <th>زمان انتشار</th>
+                         <th>وضعیت</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        {% for DataManager in object_list %}
+                          <tr style="font-family: 'BNazanin', sans-serif; font-size: 16px; font-weight: bold;">
+                             {% if DataManager.status in 'n'|make_list or user.is_superuser %}
+                                 <td style="width: 250px; font-family: 'BNazanin', sans-serif; font-size: 18px; font-weight: bold;">
+                                    <a href="{% url 'account:AddressUpdate' DataManager.pk %}"> {{ DataManager.title }} </a>
+                                 </td>
+                             {% else %}
+                                 <td style="width: 250px">{{ DataManager.title }}</td>
+                             {% endif %}
+                             <td style="width: 350px">{{ DataManager.content|truncatechars_html:120|safe }}</td>
+                             <td>{{ DataManager.jpublish }}</td>
+                             <td>
+                                {% if DataManager.status == 'v'  %}
+                                    <span class="badge badge-success">نمایش</span>
+                                {% elif DataManager.status == 'n'%}
+                                    <span class="badge badge-danger">عدم نمایش</span>
+                                {% endif %}
+                             </td>
+                             </td>
+                          </tr>
+                        {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+             <!-- /.card-body -->
+          </div>
+          {% else %}  {# در صورتیکه هیچ داده وجود نداشته باشد #}
+            <h3> محتوای برای نمایش وجود ندارد</h3>
+          {% endif %}
+          <!-- /.card -->
+       </div>
+    </div>
+{% endblock %}
