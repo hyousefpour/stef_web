@@ -1,0 +1,125 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container">
+    <div style="background:pink; padding:10px; overflow:auto;">
+        <img src="{{ DataNews.thumbnail.url }}" style="height: 170px; width: 200px; float:right; margin-left:10px;" alt="{{ DataNews.title }}">
+        <p style="font-family: 'BTitrBold', serif; font-size: 20px; color: blue; direction: rtl; text-align: center; padding-top: 50px;">
+                {{ DataNews.title }}
+        </p>
+        <br>
+        <p>
+            <time style="font-family: 'BNazanin', serif; font-size: 16px; color: #6c71c4; direction: rtl; text-align: center; font-weight: bold;">
+                {{ DataNews.jpublish }}
+            </time>
+        </p>
+    </div>
+    <p class="Show_detail"> {{ DataNews.content|safe }} </p>
+    <br><br><br>
+</div>
+
+{#  <header class="Bg_Img" style="background-image: url('{{ DataNews.thumbnail.url }}')">#}
+{#    <div class="overlay"></div>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto">#}
+{#          <div class="Bg_Img">#}
+{#            <h1 style="font-family: 'BTitrBold', serif; font-size: 20px; color: blue; direction: rtl; text-align: right;">#}
+{#                {{ DataNews.title }}#}
+{#            </h1>#}
+{#            <time style="font-family: 'BNazanin', serif; font-size: 16px; color: blue; direction: rtl; text-align: right; font-weight: bold;">#}
+{#                {{ DataNews.jpublish }}#}
+{#            </time>      {#   برای نمایش تاریخ انتشار  #}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </header>#}
+{##}
+{#    <!-- single Content -->#}
+{#  <article>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto text-justify">  {#  برای تراز بندی متن ها #}
+{#            {{ DataNews.content|safe}}#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </article>#}
+
+{#  <header class="BK_Img" style="background-image: url('{{ DataNews.thumbnail.url }}')">#}
+{#    <div class="overlay"></div>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto">#}
+{#          <div class="BK_Img">#}
+{#            <h1>{{ DataNews.title }}</h1>#}
+{#            <time>{{ DataNews.jpublish }}</time>      #  برای نمایش تاریخ انتشار#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </header>#}
+{##}
+{#    <!-- single Content -->#}
+{#  <article>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto text-justify">  # برای تراز بندی متن ها#}
+{#            {{ DataNews.content|safe}}#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </article>#}
+
+
+
+{#    <div class="container">#}
+{#        <div class="row">#}
+{##}
+{#            {% for DN in DataNews %}#}
+{#                  <img src="static{{ BASIC_DIR }}/{{ DN.thumbnail }}" style="width:200px; height: 170px; margin-left: 950px;" alt="{{ DN.title }}">#}
+{#                  <div class="text" style="margin-right: 220px; top: 0;">#}
+{#                      <p style="font-family: 'BTitrBold', serif; font-size: 20px; color: #cce5ff">#}
+{#                          {{ DB.title }}#}
+{#                      </p>#}
+{#                      <p>#}
+{#                          {{ DN.content|safe }}#}
+{#                      </p>#}
+{#                  </div>#}
+{#            {% endfor %}#}
+
+{#        </div>#}
+{#    </div>#}
+{#************************#}
+ <!-- Page Header -->
+{#  <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">#}
+{#    <div class="overlay"></div>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto">#}
+{#          <div class="site-heading">#}
+{#            <h1>{{ article.title }}</h1>#}
+{#            <time>{{ article.jpublish }}</time>      {#  برای نمایش تاریخ انتشار  #}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </header>#}
+{##}
+{#<!-- single Content -->#}
+{#  <article>#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-lg-8 col-md-10 mx-auto text-justify">  {# برای تراز بندی متن ها #}
+{#            {{ article.description | linebreaks}}#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </article>#}
+{#    *******************************#}
+
+{% endblock %}
+

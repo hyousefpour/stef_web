@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+{% load static %}
+<head>
+{#    <title>صندوق تعاونی اعتبار فرهنگیان مازندران</title>#}
+    <title>اولین برنامه تحت وب من با پایتون</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{% static '/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/bootstrap/js/bootstrap.min.js' %}">
+    <link href="{% static '/bootstrap/js/jquery.min.js' %}">
+    <link href="{% static 'mainpage/css/mainpage.css'%}" rel="stylesheet">
+    <link href="{% static 'mainpage/css/slider.css'%}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+    <div id="header">
+        <div>
+            <div class="container">
+{#                <span class="card-text">آموزش و پرورش استان مازندران</span>#}
+                <span class="card-text">اولین برنامه تحت وب من با پایتون</span>
+{#                <a href="mainpage.html" class="logo"><img src="{% static 'mainpage/images/logo.png'%}" alt="mainpage"></a>#}
+                <a href="home.html" class="logo"><img src="{% static 'mainpage/images/logo.png'%}" alt="صفحه اصلی"></a>
+{#                <span class="tagline">صندوق تعاونی اعتبار فرهنگیان مازندران</span>#}
+                <span class="tagline">طراح و برنامه نویس: حسین یوسف پور</span>
+            </div>
+            <div>
+                <ul style="margin-left: 200px">
+                    <li class="selected">
+                        <a style = "color: black; text-decoration: underline;" href="{% url 'data_prs:loginprs' %}" target="_blank">!جهت ورود به حساب خود کلیک کنید</a>
+                    </li>
+                    <li>
+                        <a href="#">ارتباط با صندوق</a>
+                    </li>
+                    <li>
+                        <a href="#">درباره صندوق</a>
+                    </li>
+                    <li>
+                        <a href="#">خبرهای صندوق</a>
+                    </li>
+                    <li>
+{#                        <a href="{% url 'main_page:BodyView' %}">صفحه اصلی</a>#}
+                        <a href="#">صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{#  body web #}
+
+{%  block main %}
+
+{% endblock %}
+
+{#    ********* مشخصات برنامه و برنامه نویس **********#}
+    <div class="container">
+        <div class="row">
+            <p id="footer_bottom" style="direction: rtl">  این برنامه برای صندوق تعاونی اعتبار فرهنگیان مازندران می باشد.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;طراح و نویسنده برنامه : حسین یوسف پور&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره تماس : 01993145851</p>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

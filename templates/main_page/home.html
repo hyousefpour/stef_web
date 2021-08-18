@@ -1,0 +1,107 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block main %}
+
+{# اسلایدر خبر و اطلاعیه #}
+    <div class="container">
+        <div class="row" style="height: 250px">
+            <h2 id="h2_news">خبرها و اطلاعیه های صندوق</h2>
+            <br> <br> <br>
+            {% for BodyNews in Body_News %}
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+{#                      <img src="static{{ BASIC_DIR }}/{{ BodyNews.thumbnail }}" style="width:200px; height: 170px; margin-left: 950px;" alt="{{ BodyNews.title }}">#}
+                      <img src="/images/{{ BodyNews.thumbnail }}" style="width:200px; height: 170px; margin-left: 950px;" alt="{{ BodyNews.title }}">
+                      <div class="text" style="margin-right: 220px; top: 0;">
+                          <p style="font-family: 'BTitrBold', serif; font-size: 20px; color: #cce5ff">
+                              {{ BodyNews.title }}
+                          </p>
+                          <p>
+                              {{ BodyNews.content|truncatechars_html:350|safe }}
+                          </p>
+                      </div>
+                      <div class="msgshow">
+                          <a href="{% url 'MainPage:detail' BodyNews.slug %}" target="_blank" style="color: #ebccd1;">مشاهده بیشتر </a>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div style="text-align:center; padding-top: 5px;">
+                {% for BNews in  Body_News %}
+                    <span class="dot"></span>
+                {% endfor %}
+            </div>
+
+            <script>
+                let slideIndex = 0;
+                showSlides();
+
+                function showSlides() {
+                    let i;
+                    const slides = document.getElementsByClassName("mySlides");
+                    const dots = document.getElementsByClassName("dot");
+                    for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                  }
+                  slideIndex++;
+                  if (slideIndex > slides.length) {slideIndex = 1}
+                  for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                  }
+                  slides[slideIndex-1].style.display = "block";
+                  dots[slideIndex-1].className += " active";
+                  setTimeout(showSlides, 2000);
+                {#  timeout: 10000; #}
+                }
+            </script>
+        </div>
+    </div>
+
+    {# *********اطلاعات و اعضا صندوق******* #}
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col-sm-6" id="p_data">
+                {% for DM in DatManage %}
+                    <h2 id="h2_data">{{ DM.title }}</h2>
+                    <p id="p_DanaManage">
+                        {{ DM.content|safe }}
+                    </p>
+                {% endfor %}
+            </div>
+
+            <div class="col-sm-6" id="p_data">
+                {% for DM in DatStef %}
+                    <h2 id="h2_data">{{ DM.title }}</h2>
+                    <p id="p_DanaManage">
+                        {{ DM.content|safe }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{#    *********  آدرس و لینک های مفید **********#}
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4" id="p_footer">
+            <h4 id="title_footer" style="direction: rtl; color: #0c4128; font-size: 15px; font-family: 'BTitrBold', serif; text-align: center;"><u>آدرس صندوق</u></h4>
+            {% for DA in DatAddress %}
+                <p id="p_footer" style="text-align: center;">
+                    {{ DA.content|safe }}
+                </p>
+            {% endfor %}
+          </div>
+
+          <div class="col-sm-4" id="a_footer">
+            <h4 id="title_footer" style="direction: rtl; color: #0c4128; font-size: 15px; font-family: 'BTitrBold', serif; text-align: center;"><u>لینک های مرتبط</u></h4>
+            {% for DL in DatLink %}
+                <a id = "a_footer" href = "{{ DL.address }}" target="_blank"> {{ DL.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+
+{% endblock %}
+
